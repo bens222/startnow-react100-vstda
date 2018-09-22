@@ -8,14 +8,25 @@ class App extends Component {
     super(props);
 
     this.state = {
-      newToDoItem: ''
+      newToDoItem: '',
+      priorityLevel: 'Low',
+      todoArray: []
     };
 
     this.myCallback = this.myCallback.bind(this);
+    this.handleArray = this.handleArray.bind(this);
   }
 
-  myCallback(dataFromChild) {
-    this.setState({ newToDoItem: dataFromChild });
+  myCallback(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  handleArray(array) {
+    const todoArray = this.state.todoArray;
+    todoArray.push(array);
+    this.setState({ todoArray });
   }
 
   render() {
@@ -29,11 +40,15 @@ class App extends Component {
           <div className='col-sm-4'>
             <NewTodo
               callbackFromParent={ this.myCallback }
-              text={ this.state.newToDoItem }
+              newToDoItem={ this.state.newToDoItem }
+              priorityLevel={ this.state.priorityLevel }
+              sendArray={ this.handleArray }
             />
           </div>
           <div className='col-sm-8'>
-            <ViewTodo />
+            <ViewTodo
+              todoArray={ this.state.todoArray }
+            />
           </div>
         </div>
       </div>
