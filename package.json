@@ -30,6 +30,7 @@
     "webpack": "^3.6.0"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.3.1",
     "axios-mock-adapter": "^1.6.1",
     "babel": "^6.3.26",
     "babel-loader": "^7.1.1",

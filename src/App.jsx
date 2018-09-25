@@ -9,8 +9,8 @@ class App extends Component {
 
     this.state = {
       newToDoItem: '',
-      priorityLevel: 'Low',
-      todoArray: []
+      priorityLevel: '1',
+      listOfTodoItems: []
     };
 
     this.myCallback = this.myCallback.bind(this);
@@ -23,10 +23,10 @@ class App extends Component {
     });
   }
 
-  handleArray(array) {
-    const todoArray = this.state.todoArray;
-    todoArray.push(array);
-    this.setState({ todoArray });
+  handleArray(todoItem) {
+    const listOfTodoItems = this.state.listOfTodoItems;
+    listOfTodoItems.push(todoItem);
+    this.setState({ listOfTodoItems });
   }
 
   render() {
@@ -47,7 +47,7 @@ class App extends Component {
           </div>
           <div className='col-sm-8'>
             <ViewTodo
-              todoArray={ this.state.todoArray }
+              listOfTodoItems={ this.state.listOfTodoItems }
             />
           </div>
         </div>

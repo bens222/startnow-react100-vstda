@@ -6,7 +6,7 @@ class NewTodo extends React.Component {
     super(props);
 
     this.state = {
-      id: 0
+      id: 1
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -18,13 +18,13 @@ class NewTodo extends React.Component {
   }
 
   handleAdd() {
-    const todoArray = [];
+    const todoItem = [];
     const newTodoId = this.state.id;
     this.setState({ id: newTodoId + 1 });
     const newToDoItem = this.props.newToDoItem;
     const priorityLevel = this.props.priorityLevel;
-    todoArray.push(newTodoId, newToDoItem, priorityLevel);
-    this.props.sendArray(todoArray);
+    todoItem.push(newTodoId, newToDoItem, priorityLevel);
+    this.props.sendArray(todoItem);
   }
 
   render() {
@@ -36,21 +36,22 @@ class NewTodo extends React.Component {
           <div>
             <textarea
               name='newToDoItem'
+              className='create-todo-text'
               onChange={ this.handleChange }
               value={ this.props.newToDoItem }
             />
           </div>
           <div className='card-text font-weight-bold mt-2'>How much of a priority is this?</div>
           <div>
-            <select name='priorityLevel' className='w-100' onChange={ this.handleChange } value={ this.props.priorityLevel }>
-              <option value='Low'>Low</option>
-              <option value='Medium'>Medium</option>
-              <option value='High'>High</option>
+            <select name='priorityLevel' className='create-todo-priority w-100' onChange={ this.handleChange } value={ this.props.priorityLevel }>
+              <option value='1'>Low</option>
+              <option value='2'>Medium</option>
+              <option value='3'>High</option>
             </select>
           </div>
         </div>
         <div className='card-footer'>
-          <button type='button' className='btn btn-success w-100' onClick={ this.handleAdd }>Add</button>
+          <button type='button' className='create-todo btn btn-success w-100' onClick={ this.handleAdd }>Add</button>
         </div>
       </div>
     );
