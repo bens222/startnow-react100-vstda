@@ -6,7 +6,7 @@ class NewTodo extends React.Component {
     super(props);
 
     this.state = {
-      id: 1
+      id: 0
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,7 +29,7 @@ class NewTodo extends React.Component {
 
   render() {
     return (
-      <div className='card'>
+      <div className='card mb-3'>
         <div className='card-header'>Add New Todo</div>
         <div className='card-body'>
           <div className='card-text font-weight-bold'>I want to..</div>
@@ -43,7 +43,7 @@ class NewTodo extends React.Component {
           </div>
           <div className='card-text font-weight-bold mt-2'>How much of a priority is this?</div>
           <div>
-            <select name='priorityLevel' className='create-todo-priority w-100' onChange={ this.handleChange } value={ this.props.priorityLevel }>
+            <select name='priorityLevel' className='create-todo-priority w-100' onChange={ this.handleChange }>
               <option value='1'>Low</option>
               <option value='2'>Medium</option>
               <option value='3'>High</option>

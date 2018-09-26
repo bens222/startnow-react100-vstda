@@ -15,6 +15,8 @@ class App extends Component {
 
     this.myCallback = this.myCallback.bind(this);
     this.handleArray = this.handleArray.bind(this);
+    this.updateTodo = this.updateTodo.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
   }
 
   myCallback(event) {
@@ -26,6 +28,21 @@ class App extends Component {
   handleArray(todoItem) {
     const listOfTodoItems = this.state.listOfTodoItems;
     listOfTodoItems.push(todoItem);
+    this.setState({ listOfTodoItems, newToDoItem: '' });
+  }
+
+  updateTodo(todoId, updateTodoItem, priorityLevel) {
+    const listOfTodoItems = [...this.state.listOfTodoItems];
+    const updatedTodo = [todoId, updateTodoItem, priorityLevel];
+    const spliceIndex = listOfTodoItems.map(todoItem => todoItem[0]).indexOf(todoId);
+    listOfTodoItems.splice(spliceIndex, 1, updatedTodo);
+    this.setState({ listOfTodoItems });
+  }
+
+  deleteTodo(todoId) {
+    const listOfTodoItems = [...this.state.listOfTodoItems];
+    const spliceIndex = listOfTodoItems.map(todoItem => todoItem[0]).indexOf(todoId);
+    listOfTodoItems.splice(spliceIndex, 1);
     this.setState({ listOfTodoItems });
   }
 
@@ -48,6 +65,8 @@ class App extends Component {
           <div className='col-sm-8'>
             <ViewTodo
               listOfTodoItems={ this.state.listOfTodoItems }
+              callbackFromParentEdit={ this.updateTodo }
+              callbackFromParentDelete={ this.deleteTodo }
             />
           </div>
         </div>
